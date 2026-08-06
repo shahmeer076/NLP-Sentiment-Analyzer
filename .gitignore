@@ -1,0 +1,6 @@
+venv/
+.venv/
+saved_model/
+__pycache__/
+.cache/
+*.pyc
