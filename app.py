@@ -6,7 +6,7 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 # Configuration
 # ==================================================
 
-MODEL_PATH = "saved_model"
+MODEL_NAME = "textattack/bert-base-uncased-imdb"
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -16,8 +16,12 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 @st.cache_resource
 def load_model():
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-    model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)
+
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+
+    model = AutoModelForSequenceClassification.from_pretrained(
+        MODEL_NAME
+    )
 
     model.to(device)
     model.eval()
@@ -41,8 +45,8 @@ st.title("🎬 Movie Sentiment Analysis")
 
 st.write(
     """
-Analyze a movie review using a fine-tuned **BERT** model and
-predict whether the sentiment is **Positive** or **Negative**.
+Analyze a movie review using a **BERT** model and predict
+whether the sentiment is **Positive** or **Negative**.
 """
 )
 
@@ -60,7 +64,7 @@ review = st.text_area(
 
 if st.button("Analyze Sentiment", use_container_width=True):
 
-    if not review.strip():
+    if review.strip() == "":
         st.warning("⚠ Please enter a movie review.")
         st.stop()
 
@@ -84,15 +88,18 @@ if st.button("Analyze Sentiment", use_container_width=True):
                 attention_mask=attention_mask,
             )
 
-            probabilities = torch.softmax(outputs.logits, dim=1)
+            probabilities = torch.softmax(
+                outputs.logits,
+                dim=1,
+            )
 
             confidence, prediction = torch.max(
                 probabilities,
                 dim=1,
             )
 
-        confidence = confidence.item()
-        prediction = prediction.item()
+    confidence = confidence.item()
+    prediction = prediction.item()
 
     st.divider()
 
@@ -103,9 +110,9 @@ if st.button("Analyze Sentiment", use_container_width=True):
     else:
         st.error("😞 Negative Review")
 
-    st.write(f"**Confidence : {confidence*100:.2f}%**")
+    st.write(f"**Confidence : {confidence * 100:.2f}%**")
 
-    st.progress(confidence)
+    st.progress(float(confidence))
 
 st.divider()
 
