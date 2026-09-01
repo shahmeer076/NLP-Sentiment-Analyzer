@@ -1,31 +1,27 @@
-# 🎬 Movie Sentiment Analysis
+# 🤖 NLP Transformer System
+An end-to-end Natural Language Processing (NLP) framework powered by State-of-the-Art (SOTA) **Transformer architectures** for specialized language understanding tasks.
 
-A simple Movie Sentiment Analysis web application built using BERT and Streamlit.
+---
 
-## Features
+## ✨ Features
+- **🧠 Transformer Architecture:** Built using Hugging Face Transformers & PyTorch for high accuracy.
+- **⚡ Custom Fine-Tuning Pipeline:** Flexible code structure to fine-tune models (e.g., BERT, RoBERTa) on domain-specific datasets.
+- **📊 Preprocessing & Tokenization:** Efficient data pipelines for text cleaning, batching, and dynamic padding.
+- **🚀 Inference Ready:** Modular inference script designed for real-time predictions and API integrations.
 
-- Predict Positive or Negative reviews
-- BERT Transformer model
-- Streamlit UI
-- Fast inference
-- Easy deployment
+---
 
-## Installation
+## 🛠️ Tech Stack & Frameworks
+- **Core Frameworks:** PyTorch, Hugging Face `transformers`
+- **NLP Libraries:** NLTK, Spacy, Hugging Face `datasets`
+- **Data Manipulation:** Pandas, NumPy, Scikit-Learn
+- **Language:** Python 3.9+
 
-```bash
-pip install -r requirements.txt
-```
+---
 
-## Run
-
-```bash
-streamlit run app.py
-```
-
-## Technologies
-
+## 🚀 Technologies
 - Python
 - PyTorch
 - Hugging Face Transformers
 - Streamlit
-- IMDB Dataset
+- IMDB DatasetGetting Started
